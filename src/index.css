@@ -1,0 +1,46 @@
+/* Global animations and small helper utilities for the dashboard starter */
+:root{
+  --accent: 59 130 246; /* rgb values for blue-600 */
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp .48s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+/* small stagger helper - children get delay with inline style from React */
+.stagger-child {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeInUp .42s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+/* subtle glowing accent used behind header */
+.header-glow {
+  position: absolute;
+  right: -6rem;
+  top: -3rem;
+  width: 20rem;
+  height: 20rem;
+  filter: blur(56px);
+  opacity: .12;
+  background: radial-gradient(circle at center, rgba(var(--accent), .9), transparent 40%);
+  pointer-events: none;
+}
+
+/* small card hover lift fallback for environments without transform transitions */
+.card-lift {
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.card-lift:hover { transform: translateY(-6px); box-shadow: 0 18px 30px rgba(10,11,13,0.08); }
+
+/* balance pulse when updated - use class toggle from React if desired */
+.balance-update {
+  animation: pulse 700ms ease;
+}
+@keyframes pulse { 0%{ transform: scale(1); } 50%{ transform: scale(1.03);} 100%{ transform: scale(1); } 
